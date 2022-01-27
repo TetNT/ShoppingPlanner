@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/plannedListsFragment">
+
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.tetsoft.planshopping.ui.product.ProductListFragment"
+        android:label="fragment_product_lists"
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/action_productList_to_editProduct"
+            app:destination="@id/editProductFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_out"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/editProductFragment"
+        android:name="com.tetsoft.planshopping.ui.product.EditProductFragment"
+        android:label="fragment_edit_product"
+        tools:layout="@layout/fragment_edit_product" />
+    <fragment
+        android:id="@+id/plannedListsFragment"
+        android:name="com.tetsoft.planshopping.ui.grocerylist.PlannedListsFragment"
+        android:label="fragment_planned_lists"
+        tools:layout="@layout/fragment_grocery_lists" />
+</navigation>

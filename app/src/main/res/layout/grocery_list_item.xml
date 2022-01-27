@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/defaultCardView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/list_item_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_list_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/tv_product_list_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="#66AAFF" />
+
+            <TextView
+                android:id="@+id/tv_product_list_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Name of a list"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/list_item_image"
+                />
+
+            <View
+                android:id="@+id/title_divide_line"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_list_name"
+                app:layout_constraintStart_toStartOf="@id/list_item_image"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+
+            <TextView
+                android:id="@+id/tv_list_snippet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snippet of what I need to buy..."
+                android:ems="13"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@id/title_divide_line"
+                app:layout_constraintStart_toStartOf="@id/title_divide_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tv_list_snippet">
+
+                <TextView
+                    android:id="@+id/tv_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Done/Undone"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_check"
+                    app:drawableTint="@color/save_green"
+                    android:layout_marginEnd="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Sum"
+                    android:drawablePadding="-4dp"
+                    android:drawableStart="@drawable/ic_money"
+                    android:drawableTint="@color/save_green"/>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
