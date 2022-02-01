@@ -12,10 +12,7 @@
         tools:layout="@layout/fragment_product_list" >
         <action
             android:id="@+id/action_productList_to_editProduct"
-            app:destination="@id/editProductFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/slide_out"
-            app:popExitAnim="@anim/slide_out"/>
+            app:destination="@id/editProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProductFragment"
@@ -24,7 +21,20 @@
         tools:layout="@layout/fragment_edit_product" />
     <fragment
         android:id="@+id/plannedListsFragment"
-        android:name="com.tetsoft.planshopping.ui.grocerylist.PlannedListsFragment"
+        android:name="com.tetsoft.planshopping.ui.planned.PlannedListsFragment"
         android:label="fragment_planned_lists"
-        tools:layout="@layout/fragment_grocery_lists" />
+        tools:layout="@layout/fragment_planned_lists" >
+        <action
+            android:id="@+id/action_plannedLists_to_plannedListEdit"
+            app:destination="@id/plannedListEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plannedListEditFragment"
+        android:name="com.tetsoft.planshopping.ui.planned.PlannedListEditFragment"
+        android:label="fragment_planned_list_edit"
+        tools:layout="@layout/fragment_planned_list_edit" >
+        <action
+            android:id="@+id/action_plannedListEdit_to_productList"
+            app:destination="@id/productListFragment" />
+    </fragment>
 </navigation>
