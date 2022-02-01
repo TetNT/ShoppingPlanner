@@ -5,17 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.tetsoft.planshopping.databinding.GroceryListItemBinding
-import com.tetsoft.planshopping.db.entity.GroceryList
+import com.tetsoft.planshopping.databinding.PlannedListItemBinding
+import com.tetsoft.planshopping.db.planned.PlannedList
 
-class GroceryListAdapter(
-    private val onClickListener: GroceryListItemOnClickListener
-) : RecyclerView.Adapter<GroceryListAdapter.GroceryListViewHolder>() {
+class PlannedListAdapter(
+    private val onClickListener: PlannedListItemOnClickListener
+) : RecyclerView.Adapter<PlannedListAdapter.GroceryListViewHolder>() {
 
 
-    private var groceryLists : List<GroceryList> = emptyList()
+    private var plannedLists : List<PlannedList> = emptyList()
 
-    private var _binding : GroceryListItemBinding? = null
+    private var _binding : PlannedListItemBinding? = null
 
     val binding get() = _binding!!
 
@@ -25,7 +25,7 @@ class GroceryListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryListViewHolder {
-        _binding = GroceryListItemBinding.inflate(
+        _binding = PlannedListItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -34,7 +34,7 @@ class GroceryListAdapter(
     }
 
     override fun onBindViewHolder(holder: GroceryListViewHolder, position: Int) {
-        val list : GroceryList = groceryLists[position]
+        val list : PlannedList = plannedLists[position]
         holder.tvListName.text = list.name
         holder.tvBudget.text = list.budget.toString()
         holder.itemView.setOnClickListener {
@@ -42,19 +42,19 @@ class GroceryListAdapter(
         }
     }
 
-    override fun getItemCount() = groceryLists.size
+    override fun getItemCount() = plannedLists.size
 
-    fun updateData(groceryLists: List<GroceryList>) {
-        val diffCallback = GroceryListsDiffCallback(this.groceryLists, groceryLists)
+    fun updateData(plannedLists: List<PlannedList>) {
+        val diffCallback = GroceryListsDiffCallback(this.plannedLists, plannedLists)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         diffResult.dispatchUpdatesTo(this)
-        this.groceryLists = groceryLists
+        this.plannedLists = plannedLists
     }
 }
 
 open class GroceryListsDiffCallback(
-    private val oldList: List<GroceryList>,
-    private val newList: List<GroceryList>) : DiffUtil.Callback() {
+    private val oldList: List<PlannedList>,
+    private val newList: List<PlannedList>) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }

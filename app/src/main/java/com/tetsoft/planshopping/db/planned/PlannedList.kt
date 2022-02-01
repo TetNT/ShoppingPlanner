@@ -1,10 +1,10 @@
-package com.tetsoft.planshopping.db.entity
+package com.tetsoft.planshopping.db.planned
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "product_list_table")
-data class GroceryList (
+@Entity(tableName = "planned_lists_table")
+data class PlannedList (
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val budget: Double
