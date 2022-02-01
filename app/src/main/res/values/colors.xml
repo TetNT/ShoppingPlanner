@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#DDDDDD</color>
     <color name="save_green">#00A200</color>
-    <color name="delete_red">#A20000</color>
+    <color name="delete_red">#9C0000</color>
     <color name="card_background">#FFFFFF</color>
+    <color name="main_background_color">#EEEEEE</color>
+    <color name="nice_blue">#283593</color>
 </resources>
