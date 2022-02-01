@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    tools:context=".ui.grocerylist.PlannedListsFragment">
+    tools:context=".ui.planned.PlannedListsFragment">
 
     <TextView
         android:id="@+id/tv_planned_lists_header"
         style="@style/headerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My lists"
+        android:text="@string/my_lists"
+        android:textSize="46sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -21,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipChildren="false"
-        android:paddingHorizontal="0dp"
+        android:paddingHorizontal="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +41,7 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:contentDescription="@string/content_desc_add_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
