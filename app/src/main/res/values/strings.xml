@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">PlanShopping</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="product_info">Данные о продукте</string>
+    <string name="hint_product_name">Название продукта</string>
+    <string name="price">Стоимость</string>
+    <string name="text_add_product_info">Добавьте информацию о продукте, который планируете покупать. Он будет сохранён и в будущем вы сможете выбирать его из списка.</string>
+    <string name="delete">Удалить</string>
+    <string name="underlined_add_to_the_list"><u>Добавить в список</u></string>
+    <string name="save">Сохранить</string>
+    <string name="sum">Всего</string>
+    <string name="name">Название</string>
+    <string name="text_products_list_description">Все доступные продукты представлены здесь. Нажмите на любой для изменения.</string>
+    <string name="budget">Бюджет</string>
+    <string name="text_setup_your_list">Настройте свой список: какие продукты необходимо купить и в каком количестве.</string>
+    <string name="add">Добавить</string>
+    <string name="my_lists">Мои списки</string>
+    <string name="content_desc_add_list">Добавить новый список</string>
 </resources>
