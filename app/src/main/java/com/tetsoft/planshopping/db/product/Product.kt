@@ -1,4 +1,4 @@
-package com.tetsoft.planshopping.db.entity
+package com.tetsoft.planshopping.db.product
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
