@@ -32,6 +32,7 @@ class SelectedProductsAdapter : RecyclerView.Adapter<SelectedProductsAdapter.Sel
 
     override fun onBindViewHolder(holder: SelectionViewHolder, position: Int) {
         val product: Product = selectionList[position].product
+        holder.checkBoxSelected.isChecked = selectionList[position].checked
         holder.checkBoxSelected.text = product.name
         holder.price.setText(product.price.toString())
         holder.quantity.setText((selectionList[position].amount).toString())
