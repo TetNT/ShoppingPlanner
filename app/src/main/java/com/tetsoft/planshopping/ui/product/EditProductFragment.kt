@@ -10,16 +10,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.tetsoft.planshopping.MainActivity
 import com.tetsoft.planshopping.PlannerApplication
+import com.tetsoft.planshopping.R
 import com.tetsoft.planshopping.databinding.FragmentEditProductBinding
-import com.tetsoft.planshopping.db.entity.Product
 
 class EditProductFragment : Fragment() {
 
     private var _binding : FragmentEditProductBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ProductViewModel by viewModels({ activity as MainActivity }) {
+    private val productViewModel: ProductViewModel by viewModels({ activity as MainActivity }) {
         ProductViewModelFactory((activity?.application as PlannerApplication).productRepository)
+    }
+
+    private val selectionViewModel: ProductSelectionViewModel by viewModels({activity as MainActivity}) {
+        ProductSelectionViewModelFactory((activity?.application as PlannerApplication).selectionRepository)
     }
 
     override fun onCreateView(
@@ -32,32 +36,51 @@ class EditProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val selectedProduct = viewModel.selectedProduct.value
-        if (selectedProduct == null) {
-            binding.buttonSaveProduct.text = "Добавить"
+
+        setupViews()
+        val pickedProduct = productViewModel.editingProduct.value
+        if (pickedProduct != null) {
+            selectionViewModel.rememberProduct(pickedProduct)
+        }
+    }
+
+    private fun setupViews() {
+        if (!productViewModel.isEditing()) {
+            binding.buttonSaveProduct.text = requireContext().getString(R.string.add)
             binding.buttonDeleteProduct.visibility = View.GONE
         } else {
-            binding.etProductName.setText(selectedProduct.name)
-            binding.etProductPrice.setText(selectedProduct.price.toString())
+            val editingProduct = productViewModel.editingProduct.value
+            binding.etProductName.setText(editingProduct!!.name)
+            binding.etProductPrice.setText(editingProduct.price.toString())
         }
         binding.buttonSaveProduct.setOnClickListener {
-            val name = binding.etProductName.text.toString()
-            val price = binding.etProductPrice.text.toString().toDouble()
-            if (selectedProduct == null) {
-                viewModel.addProduct(Product(0, name, price))
-                Toast.makeText(requireContext(), "Added", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "Updated", Toast.LENGTH_SHORT).show()
-                viewModel.updateProduct(Product(selectedProduct.id, name, price))
-            }
+            saveProduct()
             findNavController().navigateUp()
         }
         binding.buttonDeleteProduct.setOnClickListener {
-            if (selectedProduct!= null) {
-                viewModel.deleteProduct(selectedProduct)
+            if (productViewModel.isEditing()) {
+                productViewModel.deleteCurrentProduct()
                 findNavController().navigateUp()
             }
         }
+        val currentList = selectionViewModel.currentPlannedList
+        binding.addToList.setOnClickListener {
+            saveProduct()
+            productViewModel.selectProduct(selectionViewModel.selectedProduct.value)
+
+            selectionViewModel.pickCurrentProduct(1)
+            Toast.makeText(requireContext(),
+                "Успешно добавлено в список ${currentList.name}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun saveProduct() {
+        productViewModel.saveProduct(
+            binding.etProductName.text.toString(),
+            binding.etProductPrice.text.toString()
+        )
     }
 
     override fun onDestroy() {
