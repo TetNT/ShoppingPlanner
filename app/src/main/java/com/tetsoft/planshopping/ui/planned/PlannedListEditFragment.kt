@@ -16,8 +16,8 @@ import com.tetsoft.planshopping.adapter.SelectedProductsAdapter
 import com.tetsoft.planshopping.databinding.FragmentPlannedListEditBinding
 import com.tetsoft.planshopping.db.planned.PlannedList
 import com.tetsoft.planshopping.db.selected.SelectedProduct
-import com.tetsoft.planshopping.ui.selectedproduct.ProductSelectionViewModel
-import com.tetsoft.planshopping.ui.selectedproduct.ProductSelectionViewModelFactory
+import com.tetsoft.planshopping.ui.product.ProductSelectionViewModel
+import com.tetsoft.planshopping.ui.product.ProductSelectionViewModelFactory
 
 
 class PlannedListEditFragment : Fragment() {
@@ -75,13 +75,18 @@ class PlannedListEditFragment : Fragment() {
         }
 
         binding.buttonSelectProducts.setOnClickListener {
-            findNavController().navigate(R.id.action_plannedListEdit_to_productList)
+
         }
 
         binding.buttonDeleteList.setOnClickListener {
-            if (selectedList != null)
+            if (selectedList != null) {
                 deletePlannedList(selectedList)
-            findNavController().navigateUp()
+                findNavController().navigateUp()
+            }
+        }
+
+        binding.linkAddToList.setOnClickListener {
+            findNavController().navigate(R.id.action_plannedListEdit_to_productList)
         }
     }
 
