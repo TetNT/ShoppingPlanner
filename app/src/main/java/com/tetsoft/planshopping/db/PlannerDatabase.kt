@@ -47,27 +47,42 @@ abstract class PlannerDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    populateDatabase(database.plannerDao())
+                    populateDatabase(
+                        database.productDao(),
+                        database.plannedListDao(),
+                        database.selectedProductDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(plannerDao: PlannerDao) {
-            populateProducts(plannerDao)
-            populatePlannedLists(plannerDao)
+        suspend fun populateDatabase(
+            productDao: ProductDao,
+            plannedListDao: PlannedListDao,
+            selectedProductDao: SelectedProductDao
+        ) {
+            populatePlannedLists(plannedListDao)
+            populatePlannedListsContent(productDao, selectedProductDao)
         }
 
-        suspend fun populateProducts(plannerDao: PlannerDao) {
-            plannerDao.addProduct(Product(0, "Apples", 1.60))
-            plannerDao.addProduct(Product(0, "Bread", 1.30))
-            plannerDao.addProduct(Product(0, "Milk", 2.30))
-            plannerDao.addProduct(Product(0, "Chocolate", 3.50))
+        suspend fun populatePlannedLists(plannedListDao: PlannedListDao) {
+            plannedListDao.addPlannedList(PlannedList(1, "For new year", 80.0))
+            plannedListDao.addPlannedList(PlannedList(2, "Birthday", 100.0))
+            plannedListDao.addPlannedList(PlannedList(3, "Tomorrow", 15.0))
         }
 
-        suspend fun populatePlannedLists(plannerDao: PlannerDao) {
-            plannerDao.addPlannedList(GroceryList(0, "For new year", 80.0))
-            plannerDao.addPlannedList(GroceryList(0, "Birthday", 100.0))
-            plannerDao.addPlannedList(GroceryList(0, "Tomorrow", 15.0))
+        suspend fun populatePlannedListsContent(productDao: ProductDao, selectedProductDao: SelectedProductDao) {
+            val apples = Product(0, "Apples", 1.60)
+            productDao.addProduct(apples)
+            val bread = Product(0, "Bread", 1.30)
+            productDao.addProduct(bread)
+            val milk = Product(0, "Milk", 2.30)
+            productDao.addProduct(milk)
+            val chocolate = Product(0, "Chocolate", 3.50)
+            productDao.addProduct(chocolate)
+            selectedProductDao.addSelectedProduct(SelectedProduct(0, 1, apples, 4, false))
+            selectedProductDao.addSelectedProduct(SelectedProduct(0, 1, milk, 1, false))
+            selectedProductDao.addSelectedProduct(SelectedProduct(0, 2, apples, 5, false))
+            selectedProductDao.addSelectedProduct(SelectedProduct(0, 2, bread, 1, false))
         }
 
     }
