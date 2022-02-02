@@ -38,6 +38,7 @@ class ProductListFragment : Fragment() {
             viewModel.selectProduct(product)
             findNavController().navigate(R.id.action_productList_to_editProduct)
         }
+
         val adapter = ProductAdapter(listener)
         binding.rvProducts.adapter = adapter
         binding.rvProducts.layoutManager = LinearLayoutManager(
@@ -51,8 +52,7 @@ class ProductListFragment : Fragment() {
             findNavController().navigate(R.id.action_productList_to_editProduct)
         }
 
-        viewModel.products.observe(viewLifecycleOwner
-        ) { productList ->
+        viewModel.products.observe(viewLifecycleOwner) { productList ->
             adapter.updateData(productList)
         }
     }
