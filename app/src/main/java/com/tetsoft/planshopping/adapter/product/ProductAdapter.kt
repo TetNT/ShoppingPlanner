@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tetsoft.planshopping.databinding.ProductItemBinding
-import com.tetsoft.planshopping.db.entity.Product
+import com.tetsoft.planshopping.db.product.Product
 
 class ProductAdapter(
     private val onClickListener: ProductItemOnClickListener
