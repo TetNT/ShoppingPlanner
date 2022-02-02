@@ -20,8 +20,9 @@
             android:id="@+id/et_list_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="name"
             android:drawableTint="@color/nice_blue"
-            android:text="@string/name"
+            android:hint="@string/name"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,32 +34,52 @@
             android:drawableStart="@drawable/ic_money"
             android:fontFamily="sans-serif-light"
             android:hint="@string/budget"
-            app:layout_constraintStart_toStartOf="@id/et_list_name"
-            app:layout_constraintTop_toBottomOf="@id/et_list_name"
             android:importantForAutofill="no"
-            android:inputType="number"/>
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="@id/et_list_name"
+            app:layout_constraintTop_toBottomOf="@id/et_list_name" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_edit_list_description"
-        app:layout_constraintTop_toBottomOf="@id/list_editable_section"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:padding="8dp"
-        android:text="@string/text_setup_your_list"/>
+        android:text="@string/text_setup_your_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_editable_section" />
+
+    <LinearLayout
+        android:id="@+id/link_section"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_list_description"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/link_add_to_list"
+            style="@style/hyperlinkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/underlined_add_to_the_list"
+            android:textColor="@color/nice_blue"
+            app:drawableStartCompat="@drawable/ic_add"
+            app:drawableTint="@color/save_green" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_planned_products"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginVertical="4dp"
+        app:layout_constraintTop_toBottomOf="@id/link_section"
         app:layout_constraintBottom_toTopOf="@id/button_select_products"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_edit_list_description"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="16dp"
+        tools:itemCount="3"
         tools:listitem="@layout/product_selection_item" />
 
     <Button
@@ -71,12 +92,13 @@
         app:layout_constraintEnd_toStartOf="@id/button_delete_list"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_delete_list"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:backgroundTint="@color/delete_red"
+        android:src="@drawable/ic_delete"
         android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
