@@ -1,19 +1,13 @@
 package com.tetsoft.planshopping.db.product
 
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.LiveData
 
-class ProductRepository(private val productDao: ProductDao) {
-    val allProducts = productDao.getAllProducts().asLiveData()
+interface ProductRepository {
+    val allProducts: LiveData<List<Product>>
 
-    suspend fun addProduct(product: Product) {
-        productDao.addProduct(product)
-    }
+    suspend fun addProduct(product: Product)
 
-    suspend fun deleteProduct(product: Product) {
-        productDao.deleteProduct(product)
-    }
+    suspend fun deleteProduct(product: Product)
 
-    suspend fun updateProduct(product: Product) {
-        productDao.updateProduct(product)
-    }
+    suspend fun updateProduct(product: Product)
 }
