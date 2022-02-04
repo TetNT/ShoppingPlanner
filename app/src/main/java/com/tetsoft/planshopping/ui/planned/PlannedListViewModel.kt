@@ -1,11 +1,16 @@
 package com.tetsoft.planshopping.ui.planned
 
 import androidx.lifecycle.*
-import com.tetsoft.planshopping.db.planned.PlannedListRepository
 import com.tetsoft.planshopping.db.planned.PlannedList
+import com.tetsoft.planshopping.db.planned.PlannedListRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PlannedListViewModel(private val repository: PlannedListRepository) : ViewModel() {
+@HiltViewModel
+class PlannedListViewModel @Inject constructor(
+    private val repository: PlannedListRepository
+    ) : ViewModel() {
 
     val groceryLists = repository.allLists
 

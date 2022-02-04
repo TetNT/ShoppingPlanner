@@ -1,8 +1,8 @@
 package com.tetsoft.planshopping.ui.product
 
 import androidx.lifecycle.*
-import com.tetsoft.planshopping.db.product.ProductRepository
 import com.tetsoft.planshopping.db.product.Product
+import com.tetsoft.planshopping.db.product.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

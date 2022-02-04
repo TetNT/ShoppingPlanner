@@ -5,10 +5,14 @@ import com.tetsoft.planshopping.db.planned.PlannedList
 import com.tetsoft.planshopping.db.product.Product
 import com.tetsoft.planshopping.db.selected.SelectedProduct
 import com.tetsoft.planshopping.db.selected.SelectedProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductSelectionViewModel(
-private val selectedProductRepository: SelectedProductRepository) : ViewModel() {
+@HiltViewModel
+class ProductSelectionViewModel @Inject constructor(
+private val selectedProductRepository: SelectedProductRepository
+) : ViewModel() {
 
     private val _plannedList = MutableLiveData<PlannedList>()
     val currentPlannedList get() = _plannedList.value!!
