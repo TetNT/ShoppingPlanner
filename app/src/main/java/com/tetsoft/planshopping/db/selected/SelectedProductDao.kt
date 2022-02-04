@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface SelectedProductDao {
     @Query("SELECT COUNT(*) FROM selected_products_table WHERE productListId = :plannedListId")
-    fun getSelectedProductsCount(plannedListId: Int) : Int
+    fun getSelectedProductsCount(plannedListId: Int) : LiveData<Int>
 
     @Query("SELECT * FROM selected_products_table WHERE productListId = :plannedListId")
     fun getSelectedProductsForTheList(plannedListId: Int) : Flow<List<SelectedProduct>>
