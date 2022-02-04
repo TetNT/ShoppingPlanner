@@ -54,13 +54,3 @@ private val selectedProductRepository: SelectedProductRepository
         }
     }
 }
-
-@Suppress("UNCHECKED_CAST")
-class ProductSelectionViewModelFactory(private val repository: SelectedProductRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ProductSelectionViewModel::class.java))
-            return ProductSelectionViewModel(repository) as T
-        else throw IllegalArgumentException("Unknown ViewModel class")
-    }
-
-}

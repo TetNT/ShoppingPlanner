@@ -74,13 +74,3 @@ class ProductViewModel @Inject constructor(private val repository: ProductReposi
         return true
     }
 }
-
-@Suppress("UNCHECKED_CAST")
-class ProductViewModelFactory(private val repository: ProductRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
-            return ProductViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

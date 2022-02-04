@@ -39,15 +39,3 @@ class PlannedListViewModel @Inject constructor(
         _plannedList.postValue(plannedList)
     }
 }
-
-@Suppress("UNCHECKED_CAST")
-class PlannedListViewModelFactory(
-    private val repository: PlannedListRepository
-    ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(PlannedListViewModel::class.java))
-            return PlannedListViewModel(repository) as T
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-
-}
