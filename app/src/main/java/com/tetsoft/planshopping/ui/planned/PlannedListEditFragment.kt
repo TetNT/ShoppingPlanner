@@ -5,20 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tetsoft.planshopping.MainActivity
-import com.tetsoft.planshopping.PlannerApplication
 import com.tetsoft.planshopping.R
 import com.tetsoft.planshopping.adapter.SelectedProductsAdapter
 import com.tetsoft.planshopping.databinding.FragmentPlannedListEditBinding
 import com.tetsoft.planshopping.db.planned.PlannedList
 import com.tetsoft.planshopping.db.selected.SelectedProduct
 import com.tetsoft.planshopping.ui.product.ProductSelectionViewModel
-import com.tetsoft.planshopping.ui.product.ProductSelectionViewModelFactory
-
 
 class PlannedListEditFragment : Fragment() {
 
@@ -27,13 +23,9 @@ class PlannedListEditFragment : Fragment() {
 
     private lateinit var selectedProducts : LiveData<List<SelectedProduct>>
 
-    private val viewModel : PlannedListViewModel by viewModels({activity as MainActivity}) {
-        PlannedListViewModelFactory((activity?.application as PlannerApplication).listsRepository)
-    }
+    private val viewModel : PlannedListViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
-    private val selectionViewModel: ProductSelectionViewModel by viewModels({activity as MainActivity}) {
-        ProductSelectionViewModelFactory((activity?.application as PlannerApplication).selectionRepository)
-    }
+    private val selectionViewModel: ProductSelectionViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     fun addPlannedList(plannedList: PlannedList) {
         viewModel.addPlannedList(plannedList)

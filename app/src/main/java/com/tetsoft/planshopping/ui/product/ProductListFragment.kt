@@ -5,11 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tetsoft.planshopping.MainActivity
-import com.tetsoft.planshopping.PlannerApplication
 import com.tetsoft.planshopping.R
 import com.tetsoft.planshopping.adapter.product.ProductItemOnClickListener
 import com.tetsoft.planshopping.adapter.product.ProductAdapter
@@ -20,9 +18,7 @@ class ProductListFragment : Fragment() {
     private var _binding: FragmentProductListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ProductViewModel by viewModels({activity as MainActivity}) {
-        ProductViewModelFactory((activity?.application as PlannerApplication).productRepository)
-    }
+    private val viewModel: ProductViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
