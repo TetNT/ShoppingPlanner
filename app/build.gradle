@@ -7,6 +7,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -88,9 +89,19 @@ dependencies {
     // Gson
     implementation 'com.google.code.gson:gson:2.8.9'
 
+    // Dagger Hilt
+    implementation 'com.google.dagger:hilt-android:2.40.5'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.40.5'
+    kapt 'com.google.dagger:hilt-compiler:2.40.5'
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+
     // Testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
     androidTestImplementation ("androidx.test.espresso:espresso-core:$espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'})
+}
+
+kapt {
+    correctErrorTypes true
 }

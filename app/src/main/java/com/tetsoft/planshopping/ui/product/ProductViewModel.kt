@@ -1,8 +1,8 @@
 package com.tetsoft.planshopping.ui.product
 
 import androidx.lifecycle.*
-import com.tetsoft.planshopping.db.product.ProductRepository
 import com.tetsoft.planshopping.db.product.Product
+import com.tetsoft.planshopping.db.product.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -72,15 +72,5 @@ class ProductViewModel @Inject constructor(private val repository: ProductReposi
             return false
         }
         return true
-    }
-}
-
-@Suppress("UNCHECKED_CAST")
-class ProductViewModelFactory(private val repository: ProductRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
-            return ProductViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

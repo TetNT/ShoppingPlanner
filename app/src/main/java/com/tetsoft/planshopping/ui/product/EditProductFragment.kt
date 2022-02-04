@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import com.tetsoft.planshopping.MainActivity
-import com.tetsoft.planshopping.PlannerApplication
 import com.tetsoft.planshopping.R
 import com.tetsoft.planshopping.databinding.FragmentEditProductBinding
 
@@ -18,13 +16,9 @@ class EditProductFragment : Fragment() {
     private var _binding : FragmentEditProductBinding? = null
     private val binding get() = _binding!!
 
-    private val productViewModel: ProductViewModel by viewModels({ activity as MainActivity }) {
-        ProductViewModelFactory((activity?.application as PlannerApplication).productRepository)
-    }
+    private val productViewModel: ProductViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
-    private val selectionViewModel: ProductSelectionViewModel by viewModels({activity as MainActivity}) {
-        ProductSelectionViewModelFactory((activity?.application as PlannerApplication).selectionRepository)
-    }
+    private val selectionViewModel: ProductSelectionViewModel by hiltNavGraphViewModels(R.id.main_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

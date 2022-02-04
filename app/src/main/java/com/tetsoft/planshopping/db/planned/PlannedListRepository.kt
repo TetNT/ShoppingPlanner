@@ -1,20 +1,13 @@
 package com.tetsoft.planshopping.db.planned
 
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.LiveData
 
-class PlannedListRepository(private val plannedListDao: PlannedListDao) {
+interface PlannedListRepository {
+    fun getAllLists(): LiveData<List<PlannedList>>
 
-    val allLists = plannedListDao.getAllPlannedListsDescending().asLiveData()
+    suspend fun addList(plannedList: PlannedList)
 
-    suspend fun addList(plannedList: PlannedList) {
-        plannedListDao.addPlannedList(plannedList)
-    }
+    suspend fun updateList(plannedList: PlannedList)
 
-    suspend fun updateList(plannedList: PlannedList) {
-        plannedListDao.updatePlannedList(plannedList)
-    }
-
-    suspend fun deleteList(plannedList: PlannedList) {
-        plannedListDao.deletePlannedList(plannedList)
-    }
+    suspend fun deleteList(plannedList: PlannedList)
 }

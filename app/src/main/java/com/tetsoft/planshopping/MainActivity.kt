@@ -3,7 +3,9 @@ package com.tetsoft.planshopping
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.tetsoft.planshopping.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityMainBinding
