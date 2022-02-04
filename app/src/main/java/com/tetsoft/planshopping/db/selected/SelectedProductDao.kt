@@ -1,5 +1,6 @@
 package com.tetsoft.planshopping.db.selected
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -10,6 +11,9 @@ interface SelectedProductDao {
 
     @Query("SELECT * FROM selected_products_table WHERE productListId = :plannedListId")
     fun getSelectedProductsForTheList(plannedListId: Int) : Flow<List<SelectedProduct>>
+
+    @Query("SELECT SUM(ref_price) FROM selected_products_table WHERE productListId = :plannedListId")
+    fun getSelectedProductsTotalPrice(plannedListId: Int) : LiveData<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addSelectedProduct(selectedProduct: SelectedProduct)
