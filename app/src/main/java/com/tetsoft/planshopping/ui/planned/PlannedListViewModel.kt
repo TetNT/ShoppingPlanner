@@ -12,7 +12,7 @@ class PlannedListViewModel @Inject constructor(
     private val repository: PlannedListRepository
     ) : ViewModel() {
 
-    val groceryLists = repository.allLists
+    val groceryLists = repository.getAllLists()
 
     private val _plannedList : MutableLiveData<PlannedList?> = MutableLiveData()
     val plannedList : LiveData<PlannedList?> = _plannedList
